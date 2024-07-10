@@ -10,8 +10,10 @@ install_package(){
 
 }
 start_container(){
-    #ignore orphaned containers warning
+    # Ignore orphaned containers warning
     export COMPOSE_IGNORE_ORPHANS=1
+
+    echo "Running: docker-compose -f $1 up -d $2"
     docker-compose -f $1 up -d $2
 }
 
@@ -53,21 +55,41 @@ update_registry_details() {
     docker rmi busybox
 }
 # Function to start the MongoDB, Redis, and RabbitMQ Services
+DOCKER_COMPOSE_FILE=$(./docker-compose-app.yml)
+
 start_support_services(){
-    #ignore orphaned containers warning
     export COMPOSE_IGNORE_ORPHANS=1
     echo "${GREEN}................Installing MongoDB................${NC}"
-    docker-compose -f docker-compose-app.yml up -d mongo_db
+    docker-compose -f $DOCKER_COMPOSE_FILE up -d mongo_db
     echo "MongoDB installation successful"
 
     echo "${GREEN}................Installing RabbitMQ................${NC}"
-    docker-compose -f docker-compose-app.yml up -d queue_service
+    docker-compose -f $DOCKER_COMPOSE_FILE up -d queue_service
     echo "RabbitMQ installation successful"
 
     echo "${GREEN}................Installing Redis................${NC}"
-    docker-compose -f docker-compose-app.yml up -d redis_db
+    docker-compose -f $DOCKER_COMPOSE_FILE up -d redis_db
     echo "Redis installation successful"
 }
+# start_support_services(){
+#     #ignore orphaned containers warning
+#     export COMPOSE_IGNORE_ORPHANS=1
+#     echo "${GREEN}................Installing MongoDB................${NC}"
+#     if ! command -v docker-compose &> /dev/null; then
+#     echo "docker-compose could not be found"
+#     exit 1
+#     fi
+#     docker-compose -f docker-compose-app.yml up -d mongo_db
+#     echo "MongoDB installation successful"
+
+#     echo "${GREEN}................Installing RabbitMQ................${NC}"
+#     docker-compose -f docker-compose-app.yml up -d queue_service
+#     echo "RabbitMQ installation successful"
+
+#     echo "${GREEN}................Installing Redis................${NC}"
+#     docker-compose -f docker-compose-app.yml up -d redis_db
+#     echo "Redis installation successful"
+# }
 
 install_gateway() {
     if [[ $1 && $2 ]]; then
