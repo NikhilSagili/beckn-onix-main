@@ -55,20 +55,23 @@ update_registry_details() {
     docker rmi busybox
 }
 # Function to start the MongoDB, Redis, and RabbitMQ Services
-DOCKER_COMPOSE_FILE=$(./docker-compose-app.yml)
+# DOCKER_COMPOSE_FILE=$(./docker-compose-app.yml)
 
 start_support_services(){
     export COMPOSE_IGNORE_ORPHANS=1
     echo "${GREEN}................Installing MongoDB................${NC}"
-    docker-compose -f $DOCKER_COMPOSE_FILE up -d mongo_db
+    # docker-compose -f $DOCKER_COMPOSE_FILE up -d mongo_db
+    start_container $app_docker_compose_file mongo_db
     echo "MongoDB installation successful"
 
     echo "${GREEN}................Installing RabbitMQ................${NC}"
-    docker-compose -f $DOCKER_COMPOSE_FILE up -d queue_service
+    # docker-compose -f $DOCKER_COMPOSE_FILE up -d queue_service
+    start_container $app_docker_compose_file queue_service
     echo "RabbitMQ installation successful"
 
     echo "${GREEN}................Installing Redis................${NC}"
-    docker-compose -f $DOCKER_COMPOSE_FILE up -d redis_db
+    # docker-compose -f $DOCKER_COMPOSE_FILE up -d redis_db
+    start_container $app_docker_compose_file redis_db
     echo "Redis installation successful"
 }
 # start_support_services(){
