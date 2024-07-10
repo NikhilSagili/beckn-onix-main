@@ -56,5 +56,6 @@ bpp_docker_compose_file=docker-compose-bpp.yml
 bpp_docker_compose_file_sandbox=docker-compose-bpp-with-sandbox.yml
 bap_docker_compose_file=docker-compose-bap.yml
 registry_docker_compose_file=docker-compose-registry.yml
+app_docker_compose_file=docker-compose-app.yml
 gateway_docker_compose_file=docker-compose-gateway.yml
 gcl_docker_compose_file=docker-compose-gcl.yml
