@@ -39,9 +39,9 @@ else
         registry_url="http://$ip:3030/subscribers"
     elif [[ $(systemd-detect-virt) == 'wsl' ]]; then
         ip=$(hostname -I | awk '{print $1}')
-        registry_url="http://$ip:3030/subscribers"
+        registry_url="http://registry:3030/subscribers"
     else
-        registry_url="http://$(get_container_ip registry):3030/subscribers"
+        registry_url="http://registry:3030/subscribers"
     fi 
 fi
 
