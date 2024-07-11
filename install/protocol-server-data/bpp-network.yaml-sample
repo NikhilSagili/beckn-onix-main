@@ -108,7 +108,7 @@ app:
   subscriberUri: "BPP_SUBSCRIBER_URL"
 
   # Mandatory.
-  registryUrl: REGISTRY_URL
+  registryUrl: "http://registry:3030/subscribers"
   auth: true
   uniqueKey: "BPP_SUBSCRIBER_KEY_ID"
   
