@@ -110,7 +110,7 @@ app:
   subscriberUri: "BAP_SUBSCRIBER_URL"
 
   # Mandatory.
-  registryUrl: REGISTRY_URL
+  registryUrl: "http://registry:3030/subscribers"
   auth: false
   uniqueKey: "BAP_SUBSCRIBER_KEY_ID"
   
